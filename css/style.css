@@ -1,0 +1,22 @@
+canvas {
+    display: block;
+    position: absolute;
+    border: 1px solid black;
+    margin: auto;
+    top: 0;
+    bottom: 0;
+    right: 0;
+    left: 0;
+}
+button {
+	background-color: #fff;
+	border: 1px solid black;
+	height: 40px;
+	width: 100px;
+	border-radius: 5px;
+	margin: 5px;
+}
+
+button:hover {
+	background-color: #f0f8ff;
+}
