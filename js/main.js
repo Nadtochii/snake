@@ -1,7 +1,7 @@
 //Constants
 var ROWS=20, COLS=20;
 //IDs
-var EMPTY=0, SNAKE=1, FRUIT=2;
+var EMPTY=0, SNAKE=1, FRUIT=2, GAME_OVER=-1;
 //Directions
 var LEFT=0, RIGHT=1, UP=2, DOWN=3;
 //Key Codes
@@ -78,6 +78,8 @@ function setFood() {
 var canvas, cntx, keypress, frames, score;
 
 function main() {
+    document.getElementById("game_over").style.display = "none";
+
     canvas = document.createElement("canvas");
     canvas.width = COLS*20;
     canvas.height = ROWS*20;
@@ -155,11 +157,16 @@ function update() {
                 break;
         }
 
-        if (0>nx || nx>grid.width-1 ||
-            0>ny || ny>grid.height-1 ||
-            grid.get(nx, ny) === SNAKE)
-        {
-            return init();
+        if ( 0>nx || nx>grid.width-1 || 0>ny || ny>grid.height-1 || grid.get(nx, ny) === SNAKE ) {
+            document.getElementById("game_over").style.display = "block";
+
+            var tw = canvas.width/grid.width;
+            var th = canvas.height/grid.height;
+            for (var i=0; i<grid.width; i++) {
+                for (var j=0; j<grid.height; j++) {
+                    grid.set(GAME_OVER, i, j);
+                }
+            }
         }
 
         if (grid.get(nx, ny) === FRUIT) {
@@ -195,6 +202,8 @@ function draw() {
                 case EMPTY:
                     cntx.fillStyle = "#fff";
                     break;
+                case GAME_OVER:
+                    cntx.fillStyle = "#DCDCDC";
             }
             cntx.fillRect(i*tw, j*th, tw, th);
         }
@@ -211,5 +220,6 @@ function action() {
 
 function newGame() {
     game = true;
+    document.getElementById("game_over").style.display = "none";
     return init();
 }

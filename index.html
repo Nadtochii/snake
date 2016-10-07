@@ -12,7 +12,13 @@
         <button onclick="action()">Start/Pause</button>
         <span id="score"></span>
     </div>
-    <div id="container"></div>
+    <div id="container">
+        <div align="center" class="question" style="display: none" id="game_over">
+            <p>Start new game?</p>
+            <button class="btnYes" onclick="newGame()">Yes</button>
+            <button class="btnNo" onclick="main()">No</button>
+        </div>
+    </div>
 
 </body>
 </html>
