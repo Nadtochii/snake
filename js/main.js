@@ -167,6 +167,7 @@ function update() {
                     grid.set(GAME_OVER, i, j);
                 }
             }
+            return;
         }
 
         if (grid.get(nx, ny) === FRUIT) {
@@ -204,6 +205,7 @@ function draw() {
                     break;
                 case GAME_OVER:
                     cntx.fillStyle = "#DCDCDC";
+                    break;
             }
             cntx.fillRect(i*tw, j*th, tw, th);
         }
